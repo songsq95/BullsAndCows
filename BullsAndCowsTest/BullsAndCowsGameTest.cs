@@ -19,7 +19,7 @@ namespace BullsAndCowsTest
         public void Should_return_4A0B_when_guess_given_digits_are_the_same_as_secrete()
         {
             //given
-            var stubSecretGenerator=new Mock<SecretGenerator>();
+            var stubSecretGenerator = new Mock<SecretGenerator>();
             stubSecretGenerator.Setup(generator => generator.GenerateSecret())
                 .Returns("1 2 3 4");
             var game = new BullsAndCowsGame(stubSecretGenerator.Object);
@@ -28,6 +28,21 @@ namespace BullsAndCowsTest
 
             //then
             Assert.Equal("4A0B", guessResult);
+        }
+
+        [Fact]
+        public void Should_return_2A0B_when_guess_given_2_digits_value_position_same_as_secrete()
+        {
+            //given
+            var stubSecretGenerator = new Mock<SecretGenerator>();
+            stubSecretGenerator.Setup(generator => generator.GenerateSecret())
+                .Returns("1 2 3 4");
+            var game = new BullsAndCowsGame(stubSecretGenerator.Object);
+            //when
+            var guessResult = game.Guess("1 2 5 6");
+
+            //then
+            Assert.Equal("2A0B", guessResult);
         }
     }
 }
