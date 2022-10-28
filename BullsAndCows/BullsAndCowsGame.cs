@@ -18,6 +18,13 @@ namespace BullsAndCows
 
         public string Guess(string guess)
         {
+            int countBulls = CountBulls(guess);
+
+            return $"{countBulls}A0B";
+        }
+
+        private int CountBulls(string guess)
+        {
             var guessDigits = guess.Split(" ");
             var secretDigits = secret.Split(" ");
             int countBulls = 0;
@@ -29,10 +36,7 @@ namespace BullsAndCows
                 }
             }
 
-            return $"{countBulls}A0B";
-           
-
-
+            return countBulls;
         }
     }
 }
