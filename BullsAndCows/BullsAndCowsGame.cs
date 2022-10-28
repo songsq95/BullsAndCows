@@ -30,15 +30,9 @@ namespace BullsAndCows
         {
             var guessDigits = guess.Split(" ");
             var secretDigits = secret.Split(" ");
-            int countCows = 0;
-            foreach (var digit in guessDigits)
-            {
-                if (secretDigits.Contains(digit))
-                {
-                    countCows++;
-                }
-            }
-
+            int countCows = (from digit in guessDigits
+                             where secretDigits.Contains(digit)
+                             select digit).Count();
             countCows -= countBulls;
             return countCows;
         }
